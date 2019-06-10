@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script>
+<script>tpwidget("init", {
+    "flavor": "bubble",
+    "location": "YB1UX38K6DY1",
+    "geolocation": "enabled",
+    "position": "bottom-right",
+    "margin": "100px 10px",
+    "language": "zh-chs",
+    "unit": "c",
+    "theme": "chameleon",
+    "uid": "U0A858B368",
+    "hash": "4af6247700ae63a2decf0a02b2e2198d"
+});
+tpwidget("show");</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="项目地址：https://github.com/Clayeee/Win-Logs-Parse-tool">
+<meta name="keywords" content="Python,日志分析,Windows">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows安全日志解析工具">
+<meta property="og:url" content="http://www.xucha0.cn/Windows安全日志解析工具/index.html">
+<meta property="og:site_name" content="东北大苞米">
+<meta property="og:description" content="项目地址：https://github.com/Clayeee/Win-Logs-Parse-tool">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.xucha0.cn/images/win_log_parse/--help.png">
+<meta property="og:updated_time" content="2019-02-26T11:24:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows安全日志解析工具">
+<meta name="twitter:description" content="项目地址：https://github.com/Clayeee/Win-Logs-Parse-tool">
+<meta name="twitter:image" content="http://www.xucha0.cn/images/win_log_parse/--help.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.xucha0.cn/Windows安全日志解析工具/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Windows安全日志解析工具 | 东北大苞米</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband">
+     <a href="https://github.com/clayeee" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    </div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">东北大苞米</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Claye's Private Blog</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.xucha0.cn/Windows安全日志解析工具/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Claye">
+      <meta itemprop="description" content="Some life, Some technology, And some soul chicken soup.">
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东北大苞米">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Windows安全日志解析工具
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-26 19:24:47" itemprop="dateCreated datePublished" datetime="2019-02-26T19:24:47+08:00">2019-02-26</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/Windows安全日志解析工具/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Windows安全日志解析工具/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/Windows安全日志解析工具/" class="leancloud_visitors" data-flag-title="Windows安全日志解析工具">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+              <img src="/images/win_log_parse/--help.png" itemprop="contentUrl">
+            
+          
+
+          
+          </div>
+        </div>
+      
+
+      
+        <div class="note default">
+            <p>项目地址：<a href="https://github.com/Clayeee/Win-Logs-Parse-tool" target="_blank" rel="noopener">https://github.com/Clayeee/Win-Logs-Parse-tool</a></p>
+          </div>
+<a id="more"></a>
+<p>Tool Name : Windows Safe Logs Parse Tool<br>Version   : v 1.0.0<br>Developer : Xu Chao<br>E-mail    : <a href="mailto:1269575798@qq.com" target="_blank" rel="noopener">1269575798@qq.com</a><br>Date      : 19/02/26</p>
+<h1 id="Windows安全日志解析工具"><a href="#Windows安全日志解析工具" class="headerlink" title="Windows安全日志解析工具"></a>Windows安全日志解析工具</h1><p>可解析windows系统目录下的安全日志文件 ( 需获取管理员权限 )，也可采用手动添加文件的方式进行解析，解析后的文件为XML，HTML两种格式，HTML已采用Bootstrap框架进行界面可视化优化，可直接查看重点日志数据，解析后的HTML数据文件保存在执行文件下的<code>logs/</code>文件夹下 ( 自动创建 )，XML数据文件保存在执行文件下的<code>logs/xml/</code>文件夹下，本工具采用Python语言开发。</p>
+<h3 id="功能特点"><a href="#功能特点" class="headerlink" title="功能特点"></a>功能特点</h3><ul>
+<li>日志文件可视化解析</li>
+<li>原始数据保存为XML文件</li>
+<li>管理员运行可直接解析系统日志</li>
+<li>可采用手动添加文件或目录方式进行解析</li>
+</ul>
+<h3 id="参数解析"><a href="#参数解析" class="headerlink" title="参数解析"></a>参数解析</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">optional arguments:</span><br><span class="line">  -h, --help            show this help message and exit</span><br><span class="line">  -s, --system          读取并解析指定的windows日志</span><br><span class="line">  -f FILE, --file FILE  指定一个evtx文件进行解析</span><br><span class="line">  -d DIR, --dir DIR     指定一个目录，解析目录下所有evtx文件(默认为系统日志文件夹)</span><br></pre></td></tr></table></figure>
+<h3 id="源码结构"><a href="#源码结构" class="headerlink" title="源码结构"></a>源码结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">├─import              # 引用模块</span><br><span class="line">├─argparse            # 参数解析模块</span><br><span class="line">├─parse_logs          # evtx日志文件解析模块</span><br><span class="line">├─XML_parse           # XML数据解析模块</span><br><span class="line">├─save_data           # 数据保存模块</span><br><span class="line">└─__main__            # 主模块</span><br></pre></td></tr></table></figure>
+<h3 id="功能详情"><a href="#功能详情" class="headerlink" title="功能详情"></a>功能详情</h3><ul>
+<li><h5 id="argparse——参数解析模块"><a href="#argparse——参数解析模块" class="headerlink" title="argparse——参数解析模块"></a><code>argparse</code>——参数解析模块</h5><ul>
+<li><p>所需模块：<code>argparse</code></p>
+</li>
+<li><p>功能： <code>-h  --help</code> :  显示参数帮助文档</p>
+<p>​             <code>-s --system</code> : 读取并解析系统日志，需手动选择解析文件</p>
+<p>​         <code>-f  --file</code> : 指定日志文件进行解析，如执行：<code>python tool.py -f D:/Application.evtx</code></p>
+<p>​         <code>-d --dir</code> : 指定目录，解析目录下所有日志文件，如执行：<code>python tool.py -f D:/log/</code></p>
+</li>
+</ul>
+</li>
+<li><h5 id="parse-logs——evtx日志文件解析模块"><a href="#parse-logs——evtx日志文件解析模块" class="headerlink" title="parse_logs——evtx日志文件解析模块"></a><code>parse_logs</code>——<code>evtx</code>日志文件解析模块</h5><ul>
+<li>所需模块：<code>Evtx,contextlib,mmap</code></li>
+<li>功能：利用<code>python-evtx</code>模块解析<code>.evtx</code>文件数据，遍历事件，将事件解析为<code>XML</code>数据格式，单个事件顶级标签为<event>，返回单个文件解析的所有<code>XML</code>数据。</event></li>
+</ul>
+</li>
+<li><h5 id="XML-parse——XML数据解析模块"><a href="#XML-parse——XML数据解析模块" class="headerlink" title="XML_parse——XML数据解析模块"></a><code>XML_parse</code>——<code>XML</code>数据解析模块</h5><ul>
+<li>所需模块：<code>xml.dom.minidom</code></li>
+<li>功能：将 XML 数据在内存中解析成一个树，通过对树的操作来操作 XML。返回一个字典列表，列表长度为文件内事件数，字典内保存获取的数据。</li>
+</ul>
+</li>
+<li><h5 id="save-data——-数据保存模块"><a href="#save-data——-数据保存模块" class="headerlink" title="save_data—— 数据保存模块"></a><code>save_data</code>—— 数据保存模块</h5><ul>
+<li>所需模块：<code>os,codecs,string.Template</code></li>
+<li>功能：通过传入的<code>mod</code>参数判断保存数据格式<ul>
+<li>XML下：<ol>
+<li>判断是否存在<code>log/xml/</code>文件夹，不存在则创建</li>
+<li>写入与<code>evtx</code>文件同名的<code>XML</code>文件</li>
+<li>为XML文件添加顶级标签<data> <!--不添加则无法解析XML文件--></data></li>
+<li>写入<code>parse_logs</code>返回的<code>XML</code>数据</li>
+</ol>
+</li>
+<li>HTML下：<ol>
+<li>利用字符串模板，将提前定义好的<code>html</code>文件模板字符串的变量进行替换</li>
+<li>循环遍历<code>XML_parse</code>返回的列表，将变量绑定至<code>HTML</code>文件</li>
+<li>单个列表绑定一个<code>table</code>表格</li>
+<li>写入数据</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h5 id="main-——程序入口"><a href="#main-——程序入口" class="headerlink" title="__main__——程序入口"></a><code>__main__</code>——程序入口</h5><ol>
+<li>判断参数</li>
+<li>遍历目录（如解析单个文件则没有此功能）</li>
+<li>将.evtx文件解析为XML数据</li>
+<li>将XML数据保存为XML文件</li>
+<li>将XML文件数据解析为DOM树，获取数据并返回一个字典列表</li>
+<li>将字典列表数据通过字符串模板写入HTML文件内</li>
+</ol>
+</li>
+</ul>
+<h3 id="程序演示"><a href="#程序演示" class="headerlink" title="程序演示"></a>程序演示</h3><h5 id="执行-help参数："><a href="#执行-help参数：" class="headerlink" title="执行--help参数："></a>执行<code>--help</code>参数：</h5><p><img src="/images/win_log_parse/--help.png" alt="--help"></p>
+<h5 id="执行-system参数："><a href="#执行-system参数：" class="headerlink" title="执行--system参数："></a>执行<code>--system</code>参数：</h5><h6 id="​文件选择界面："><a href="#​文件选择界面：" class="headerlink" title="​文件选择界面："></a>​文件选择界面：</h6><p><img src="/images/win_log_parse/-s1.png" alt="-s 1"></p>
+<p><img src="/images/win_log_parse/-s2.png" alt="-s 2"></p>
+<h5 id="执行-file参数："><a href="#执行-file参数：" class="headerlink" title="执行--file参数："></a>执行<code>--file</code>参数：</h5><p><img src="/images/win_log_parse/-f.png" alt="-f"></p>
+<h5 id="自动创建文件夹及文件："><a href="#自动创建文件夹及文件：" class="headerlink" title="自动创建文件夹及文件："></a>自动创建文件夹及文件：</h5><p><img src="/images/win_log_parse/dir2.png" alt="dir2"></p>
+<h5 id="XML文档内容："><a href="#XML文档内容：" class="headerlink" title="XML文档内容："></a><code>XML</code>文档内容：</h5><p><img src="/images/win_log_parse/xml.png" alt="xml"></p>
+<h5 id="HTML文档内容："><a href="#HTML文档内容：" class="headerlink" title="HTML文档内容："></a><code>HTML</code>文档内容：</h5><p><img src="/images/win_log_parse/html.png" alt="html"></p>
+<h5 id="执行-dir参数："><a href="#执行-dir参数：" class="headerlink" title="执行--dir参数："></a>执行<code>--dir</code>参数：</h5><p><img src="/images/win_log_parse/-d.png" alt="-d"></p>
+<h3 id="已知缺陷"><a href="#已知缺陷" class="headerlink" title="已知缺陷"></a>已知缺陷</h3><ul>
+<li>采用阻塞式I/O开发，在解析大文件或目录下多个文件时程序运行较慢。</li>
+</ul>
+<h3 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h3><hr>
+<h2 id="Email：1269575798-qq-com"><a href="#Email：1269575798-qq-com" class="headerlink" title="Email：1269575798@qq.com"></a>Email：<a href="mailto:1269575798@qq.com" target="_blank" rel="noopener">1269575798@qq.com</a></h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>客官里面请~</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Claye 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="Claye 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          
+            <a href="/tags/日志分析/" rel="tag"><i class="fa fa-tag"></i> 日志分析</a>
+          
+            <a href="/tags/Windows/" rel="tag"><i class="fa fa-tag"></i> Windows</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/服务器开放端口扫描工具/" rel="next" title="服务器开放端口扫描工具">
+                <i class="fa fa-chevron-left"></i> 服务器开放端口扫描工具
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/ES6笔记/" rel="prev" title="ES6笔记">
+                ES6笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/touxiang.png" alt="Claye">
+            
+              <p class="site-author-name" itemprop="name">Claye</p>
+              <div class="site-description motion-element" itemprop="description">Some life, Some technology, And some soul chicken soup.</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">文章</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Clayeee" title="GitHub &rarr; https://github.com/Clayeee" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:1269575798@qq.com" title="E-Mail &rarr; mailto:1269575798@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://example.com" title="http://example.com" rel="noopener" target="_blank">Title</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows安全日志解析工具"><span class="nav-number">1.</span> <span class="nav-text">Windows安全日志解析工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能特点"><span class="nav-number">1.0.1.</span> <span class="nav-text">功能特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数解析"><span class="nav-number">1.0.2.</span> <span class="nav-text">参数解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码结构"><span class="nav-number">1.0.3.</span> <span class="nav-text">源码结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能详情"><span class="nav-number">1.0.4.</span> <span class="nav-text">功能详情</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#argparse——参数解析模块"><span class="nav-number">1.0.4.0.1.</span> <span class="nav-text">argparse——参数解析模块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#parse-logs——evtx日志文件解析模块"><span class="nav-number">1.0.4.0.2.</span> <span class="nav-text">parse_logs——evtx日志文件解析模块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#XML-parse——XML数据解析模块"><span class="nav-number">1.0.4.0.3.</span> <span class="nav-text">XML_parse——XML数据解析模块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#save-data——-数据保存模块"><span class="nav-number">1.0.4.0.4.</span> <span class="nav-text">save_data—— 数据保存模块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#main-——程序入口"><span class="nav-number">1.0.4.0.5.</span> <span class="nav-text">__main__——程序入口</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序演示"><span class="nav-number">1.0.5.</span> <span class="nav-text">程序演示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#执行-help参数："><span class="nav-number">1.0.5.0.1.</span> <span class="nav-text">执行--help参数：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#执行-system参数："><span class="nav-number">1.0.5.0.2.</span> <span class="nav-text">执行--system参数：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#​文件选择界面："><span class="nav-number">1.0.5.0.2.1.</span> <span class="nav-text">​文件选择界面：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#执行-file参数："><span class="nav-number">1.0.5.0.3.</span> <span class="nav-text">执行--file参数：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#自动创建文件夹及文件："><span class="nav-number">1.0.5.0.4.</span> <span class="nav-text">自动创建文件夹及文件：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#XML文档内容："><span class="nav-number">1.0.5.0.5.</span> <span class="nav-text">XML文档内容：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTML文档内容："><span class="nav-number">1.0.5.0.6.</span> <span class="nav-text">HTML文档内容：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#执行-dir参数："><span class="nav-number">1.0.5.0.7.</span> <span class="nav-text">执行--dir参数：</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#已知缺陷"><span class="nav-number">1.0.6.</span> <span class="nav-text">已知缺陷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#联系我"><span class="nav-number">1.0.7.</span> <span class="nav-text">联系我</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Email：1269575798-qq-com"><span class="nav-number">1.1.</span> <span class="nav-text">Email：1269575798@qq.com</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Claye</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="20,20,0" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'RtPtaxYPnhL7FHdxo5c5PWcE-gzGzoHsz',
+    appKey: '94wPCcpS6dCVNnTlyyqscFyT',
+    placeholder: '😎小老弟不来评论一下嘛~😉',
+    avatar: 'retro',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script>
+<script>tpwidget("init", {
+    "flavor": "bubble",
+    "location": "YB1UX38K6DY1",
+    "geolocation": "enabled",
+    "position": "bottom-right",
+    "margin": "100px 10px",
+    "language": "zh-chs",
+    "unit": "c",
+    "theme": "chameleon",
+    "uid": "U0A858B368",
+    "hash": "4af6247700ae63a2decf0a02b2e2198d"
+});
+tpwidget("show");</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="事件就是文档或浏览器窗口中发生的一些特定的交互瞬间。            事件流 事件流描述的是从页面中接收事件的顺序。">
+<meta name="keywords" content="Web前端,笔记,DOM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript事件">
+<meta property="og:url" content="http://www.xucha0.cn/Javascript事件/index.html">
+<meta property="og:site_name" content="东北大苞米">
+<meta property="og:description" content="事件就是文档或浏览器窗口中发生的一些特定的交互瞬间。            事件流 事件流描述的是从页面中接收事件的顺序。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-18T11:03:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript事件">
+<meta name="twitter:description" content="事件就是文档或浏览器窗口中发生的一些特定的交互瞬间。            事件流 事件流描述的是从页面中接收事件的顺序。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.xucha0.cn/Javascript事件/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Javascript事件 | 东北大苞米</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband">
+     <a href="https://github.com/clayeee" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    </div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">东北大苞米</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Claye's Private Blog</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.xucha0.cn/Javascript事件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Claye">
+      <meta itemprop="description" content="Some life, Some technology, And some soul chicken soup.">
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东北大苞米">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Javascript事件
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-18 19:03:30" itemprop="dateCreated datePublished" datetime="2018-12-18T19:03:30+08:00">2018-12-18</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/Javascript事件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Javascript事件/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/Javascript事件/" class="leancloud_visitors" data-flag-title="Javascript事件">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div class="note default">
+            <p>事件就是<code>文档</code>或<code>浏览器窗口</code>中发生的一些特定的交互瞬间。</p>
+          </div>
+<h3 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h3><hr>
+<p>事件流描述的是从页面中接收事件的<strong>顺序</strong>。<br><a id="more"></a></p>
+<h4 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h4><p>IE的事件流叫做事件冒泡，既事件开始时由最具体的元素接收，然后逐级向上传播到较为不具体的节点。</p>
+<blockquote>
+<p>事件由内向外进行触发</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Event<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span>&gt;</span>Click Me<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>点击<div>元素，事件冒泡顺序为：<code>&lt;div&gt; -&gt; &lt;body&gt; -&gt; &lt;html&gt; -&gt; document</code>。</div></p>
+<blockquote>
+<p> 所有现代浏览器都支持事件冒泡，但在具体实现上有一些差别</p>
+</blockquote>
+<h4 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h4><p>事件捕获是指不太具体的节点更早接收到事件，而最具体的节点应该最后接收事件，</p>
+<blockquote>
+<p>事件由外向内进行触发</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Event<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span>&gt;</span>Click Me<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>点击<div>元素，事件冒泡顺序为：<code>document -&gt; &lt;html&gt; -&gt; &lt;body&gt; -&gt; &lt;div&gt;</code>。</div></p>
+<blockquote>
+<p> 老版本浏览器不支持，一般不使用</p>
+</blockquote>
+<h4 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h4><p>事件流的三个阶段：事件捕获阶段、处于目标阶段、事件冒泡阶段。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Event<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span>&gt;</span>Click Me<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>事件流顺序为：<code>document -&gt; &lt;html&gt; -&gt; &lt;body&gt; -&gt; &lt;div&gt; -&gt; &lt;body&gt; -&gt; &lt;html&gt; -&gt; document</code></p>
+<blockquote>
+<p><code>document -&gt; &lt;html&gt; -&gt; &lt;body&gt;</code>为事件捕获阶段</p>
+<p><div>为处于目标阶段</div></p>
+<p><code>&lt;div&gt; -&gt; &lt;body&gt; -&gt; &lt;html&gt; -&gt; document</code>为事件冒泡阶段</p>
+</blockquote>
+<p><strong>事件触发元素被认为是事件冒泡的一部分，事件捕获阶段不会接收到事件</strong></p>
+<h3 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h3><hr>
+<p>响应某个事件的函数叫做事件处理程序，事件处理程序的名字以<code>“on”</code>开头。</p>
+<h4 id="HTML事件处理程序"><a href="#HTML事件处理程序" class="headerlink" title="HTML事件处理程序"></a>HTML事件处理程序</h4><p>某个元素支持的每种事件，都可以使用一个与相应事件处理程序同名的<code>HTML特性</code>来指定。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--将onclick事件绑定至input标签--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"Click Me"</span> <span class="attr">onclick</span>=<span class="string">"alert('Hi')"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>不能够使用未转义字符，例如：“ ‘ &lt; &gt; &amp; 等</p>
+</blockquote>
+<p>通过<code>event</code>变量可以直接访问时间对象，<code>this</code>表示当前标签。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--输出 "click"--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"Click Me"</span> <span class="attr">onclick</span>=<span class="string">"alert(event.type)"</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!--输出 "Click Me"--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"Click Me"</span> <span class="attr">onclick</span>=<span class="string">"alert(this.value)"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="DOM0级事件处理程序"><a href="#DOM0级事件处理程序" class="headerlink" title="DOM0级事件处理程序"></a>DOM0级事件处理程序</h4><p>将函数赋值给一个事件处理程序属性。</p>
+<blockquote>
+<p>优点：简单、跨浏览器优势。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"myBtn"</span>);</span><br><span class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.id);          <span class="comment">// "myBtn" this指向当前标签元素</span></span><br><span class="line">&#125;;</span><br><span class="line">btn.onclick = <span class="literal">null</span>;          <span class="comment">// 删除DOM0级事件</span></span><br></pre></td></tr></table></figure>
+<h4 id="DOM2级事件处理程序"><a href="#DOM2级事件处理程序" class="headerlink" title="DOM2级事件处理程序"></a>DOM2级事件处理程序</h4><ol>
+<li><code>addEventListener(&quot;event&quot;, function, boolean)</code>方法：指定事件处理程序。</li>
+<li><code>removeEventListener(&quot;event&quot;, function, boolean)</code>方法：删除事件处理程序。</li>
+</ol>
+<blockquote>
+<p><code>event</code>：事件名称。</p>
+<p><code>function</code>：事件处理函数。</p>
+<p><code>boolean</code>：<code>true</code>——捕获阶段调用，<code>false</code>——冒泡阶段调用。</p>
+</blockquote>
+<p><em>可以为一个事件添加多个事件处理程序，按顺序执行。</em></p>
+<blockquote>
+<p>使用<code>addEventListener()</code>方法添加的事件处理程序只能用<code>removeEventListener()</code>方法删除。</p>
+<p>所以当<code>addEventListener()</code>方法添加事件处理程序为匿名函数的时候，removeEventListener()方法无效。</p>
+</blockquote>
+<h4 id="IE事件处理程序"><a href="#IE事件处理程序" class="headerlink" title="IE事件处理程序"></a>IE事件处理程序</h4><ol>
+<li><code>attachEvent(onEvent, function)</code>：指定事件处理程序。</li>
+<li><code>detachEvent(onEvent, function)</code>：删除事件处理程序。</li>
+</ol>
+<blockquote>
+<p>事件处理程序作用域为全局作用域，所以<strong>this</strong>指向<strong>window</strong>对象。</p>
+</blockquote>
+<p><em>可以为一个事件添加多个事件处理程序，按相反顺序执行。</em></p>
+<h3 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h3><hr>
+<p>当触发DOM上的某个事件时，会产生一个时间对象event，这个对象中包含着所有与事件有关的信息。</p>
+<h4 id="DOM中的事件对象"><a href="#DOM中的事件对象" class="headerlink" title="DOM中的事件对象"></a>DOM中的事件对象</h4><p>兼容DOM的浏览器会将一个<code>event</code>对象传入到事件处理程序中。</p>
+<ul>
+<li><code>event</code>对象属性及方法：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性/方法</th>
+<th>类型</th>
+<th>读/写</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bubbles</code></td>
+<td>Boolean</td>
+<td>只读</td>
+<td>表明事件是否冒泡</td>
+</tr>
+<tr>
+<td><code>cancelable</code></td>
+<td>Boolean</td>
+<td>只读</td>
+<td>表明是否可以取消事件的默认行为</td>
+</tr>
+<tr>
+<td><code>currentTarget</code></td>
+<td>Element</td>
+<td>只读</td>
+<td>其事件处理程序当前正在处理事件的那个元素</td>
+</tr>
+<tr>
+<td><code>defaultPrevented</code></td>
+<td>Boolean</td>
+<td>只读</td>
+<td><code>true</code>表示已经调用了<code>preventDefault()</code>方法（DOM3）</td>
+</tr>
+<tr>
+<td><code>detail</code></td>
+<td>Integer</td>
+<td>只读</td>
+<td>与事件相关的细节信息</td>
+</tr>
+<tr>
+<td><code>eventPhase</code></td>
+<td>Integer</td>
+<td>只读</td>
+<td>调用事件处理程序的阶段：<code>1</code>表示捕获阶段，<code>2</code>表示“处于目标”，<code>3</code>表示冒泡阶段</td>
+</tr>
+<tr>
+<td><code>preventDefault()</code></td>
+<td>Function</td>
+<td>只读</td>
+<td>取消事件的默认行为。如果<code>cancelable</code>是<code>true</code>，则可以使用这个方法</td>
+</tr>
+<tr>
+<td><code>stopImmdiatePropagation()</code></td>
+<td>Function</td>
+<td>只读</td>
+<td>取消事件的进一步捕获或冒泡，同时阻止任何时间处理程序被调用（DOM3）</td>
+</tr>
+<tr>
+<td><code>stopPropagation()</code></td>
+<td>Function</td>
+<td>只读</td>
+<td>取消时间的进一步捕获或冒泡。如果<code>bubbles</code>为<code>true</code>，则可使用这个方法</td>
+</tr>
+<tr>
+<td><code>target</code></td>
+<td>Element</td>
+<td>只读</td>
+<td>事件的目标</td>
+</tr>
+<tr>
+<td><code>trusted</code></td>
+<td>Boolean</td>
+<td>只读</td>
+<td>为<code>true</code>表示事件是浏览器生成的。为<code>false</code>表示事件是由开发人员通过<code>JavaScript</code>创建的（DOM3）</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>String</td>
+<td>只读</td>
+<td>被触发的事件类型</td>
+</tr>
+<tr>
+<td><code>view</code></td>
+<td>AbstractView</td>
+<td>只读</td>
+<td>与事件关联的抽象视图。等同于发生事件的<code>window</code>对象</td>
+</tr>
+</tbody>
+</table>
+<h4 id="IE中的事件对象"><a href="#IE中的事件对象" class="headerlink" title="IE中的事件对象"></a>IE中的事件对象</h4><p><strong>使用DOM0级方法</strong>：<code>event</code>对象作为<code>window</code>对象的一个属性。</p>
+<ul>
+<li><code>event</code>对象属性和方法：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性/方法</th>
+<th>类型</th>
+<th>读/写</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cancelBubble</td>
+<td>Boolean</td>
+<td>读/写</td>
+<td>默认值为false，但将其设置为true就可以取消事件冒泡（与DOM中的<code>stopPropagation()</code>方法相同）</td>
+</tr>
+<tr>
+<td>returnValue</td>
+<td>Boolean</td>
+<td>读/写</td>
+<td>默认值为true，但将其设置为false就可以取消事件的默认行为（与DOM中的<code>preventDefault()</code>方法相同）</td>
+</tr>
+<tr>
+<td>srcElement</td>
+<td>Element</td>
+<td>只读</td>
+<td>事件的目标（与DOM中的<code>target</code>属性相同）</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>只读</td>
+<td>被触发的事件的类型</td>
+</tr>
+</tbody>
+</table>
+<h3 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h3><hr>
+<p><strong>DOM3级事件类型：</strong></p>
+<ul>
+<li>UI事件：当用户与页面上的元素交互时触发。</li>
+<li>焦点事件：当元素获得或失去焦点时触发。</li>
+<li>鼠标事件：当用户通过鼠标在页面上执行操作时触发。</li>
+<li>滚轮事件：当使用鼠标滚轮时触发。</li>
+<li>文本事件：当在文档中输入文本时触发。</li>
+<li>键盘事件：当用户通过键盘在页面上执行操作时触发。</li>
+<li>合成事件：当为IME输入字符事触发。</li>
+<li>变动事件：当底层DOM结构发生变化时触发。</li>
+</ul>
+<h4 id="UI事件"><a href="#UI事件" class="headerlink" title="UI事件"></a>UI事件</h4><ul>
+<li><strong><code>load</code></strong>：当页面完全加载后在<code>window</code>上面触发，当所有框架都加载完毕时在框架集上面触发，当图像加载完毕时在<img>元素上面触发，当嵌入的内容加载完毕时在<object>元素上面触发。</object></li>
+<li><strong><code>unload</code></strong>：当页面完全卸载后在<code>window</code>上面触发，当所有框架都卸载后在框架集上面触发，当嵌入内容卸载后在<object>元素上面触发。</object></li>
+<li><strong><code>abort</code></strong>：当用户停止下载过程时，如果嵌入的内容没有加载完，则在<object>元素上面触发。</object></li>
+<li><strong><code>error</code></strong>：当发生<code>JavaScript</code>错误时在<code>window</code>上面触发，当无法加载图像时在<img>上触发，当无法加载嵌入内容时在<object>上触发，当有一个或多个框架无法加载时在框架集上触发。</object></li>
+<li><strong><code>select</code></strong>：当用户选择文本框中的一个或多个字符时触发。</li>
+<li><strong><code>resize</code></strong>：当窗口或框架大小变化时在<code>window</code>或框架上面触发。</li>
+<li><strong><code>scroll</code></strong>：当用户滚动带滚动条的元素中的内容时，在该元素上面触发。<body>元素中包含所加载页面的滚动条。</body></li>
+</ul>
+<blockquote>
+<p>以上事件在DOM2中都归为HTML事件。</p>
+</blockquote>
+<h4 id="焦点事件"><a href="#焦点事件" class="headerlink" title="焦点事件"></a>焦点事件</h4><p>在页面元素获得或失去元素焦点时触发。</p>
+<ul>
+<li><code>blur</code>：在元素失去焦点时触发，这个事件不会冒泡。</li>
+<li><code>DOMFocusIn</code>：在元素获得焦点时触发，与HTML事件的focus等价，但它冒泡。[仅Opera支持]</li>
+<li><code>DOMFocusOut</code>：在元素失去焦点时触发，与HTML事件的focus等价，但它冒泡。[仅Opera支持]</li>
+<li><code>focus</code>：在元素获得焦点时触发。这个事件不会冒泡。</li>
+<li><code>focusin</code>：在元素获得焦点时触发。与HTML事件的<code>focus</code>等价，但它冒泡。</li>
+<li><code>focusout</code>：在元素失去焦点时触发。这个事件是HTML事件<code>blur</code>的通用版本。</li>
+</ul>
+<h4 id="鼠标与滚轮事件"><a href="#鼠标与滚轮事件" class="headerlink" title="鼠标与滚轮事件"></a>鼠标与滚轮事件</h4><ul>
+<li><code>click</code>：在用户单击鼠标或是按下回车键时触发。</li>
+<li><code>dbclick</code>：用户双击鼠标触发，DOM3纳入标准</li>
+<li><code>mousedown</code>：用户按下任意鼠标按钮触发。</li>
+<li><code>mouseenter</code>：鼠标光标从元素外部首次移动到元素范围之内触发，这个事件不冒泡。</li>
+<li><code>mouseleave</code>：在位于元素上方的鼠标光标移动到元素之外触发。改时间不冒泡，而且在光标移动到子后代元素也不会触发。</li>
+<li><code>mousemove</code>：当鼠标指针在元素内部移送时重复的触发。</li>
+<li><code>mouseout</code>：在鼠标指针位于一个元素的上方，然后用户将其移入另一个元素时触发。</li>
+<li><code>mouseover</code>：在鼠标指针位于一个元素外部，然后用户将其首次移入另一个元素边界之内时触发。</li>
+<li><code>mouseup</code>：在用户释放鼠标按钮时触发。</li>
+</ul>
+<p>只有相继触发<code>mousedown</code>和<code>mouseup</code>事件，才会触发<code>click</code>事件，只有触发两次<code>click</code>事件，才会触发<code>dbclick</code>事件。触发顺序如下：</p>
+<ol>
+<li><code>mousedown</code></li>
+<li><code>mouseup</code></li>
+<li><code>click</code></li>
+<li><code>moisedown</code></li>
+<li><code>mouseup</code></li>
+<li><code>click</code></li>
+<li><code>dbclick</code></li>
+</ol>
+<h5 id="1-客户端坐标位置"><a href="#1-客户端坐标位置" class="headerlink" title="1. 客户端坐标位置"></a>1. 客户端坐标位置</h5><p><code>clientX</code>和<code>cliickY</code>分别表示鼠标指针在浏览器窗口中的水平和垂直坐标。</p>
+<h5 id="2-页面坐标位置"><a href="#2-页面坐标位置" class="headerlink" title="2. 页面坐标位置"></a>2. 页面坐标位置</h5><p><code>pageX</code>和<code>pageY</code>分别表示鼠标指针在页面中的水平和垂直坐标。</p>
+<blockquote>
+<p>如果页面没有被滚动，则<code>pageX</code>、<code>pageY</code>的值与<code>clientX</code>、<code>clientY</code>的坐标相同。</p>
+</blockquote>
+<h5 id="3-屏幕坐标位置"><a href="#3-屏幕坐标位置" class="headerlink" title="3.屏幕坐标位置"></a>3.屏幕坐标位置</h5><p><code>screenX</code>和<code>screenY</code>分别表示鼠标指针在屏幕位置中的水平和垂直坐标。</p>
+<h5 id="4-修改键"><a href="#4-修改键" class="headerlink" title="4.修改键"></a>4.修改键</h5><p><code>shift</code>、<code>Ctrl</code>、<code>Alt</code>和<code>Meta</code>（<code>win</code>或<code>cmd</code>）键分别对应<code>shiftKey</code>、<code>ctrlKey</code>、<code>altKey</code>、<code>metaKey</code>。当这些属性值为<code>true</code>时，就表示他们所对应的按键被按下。</p>
+<h4 id="键盘与文本事件"><a href="#键盘与文本事件" class="headerlink" title="键盘与文本事件"></a>键盘与文本事件</h4><ul>
+<li><code>keydown</code>：当用户按下按键上的任意键触发，如果按住不放则会重复触发。</li>
+<li>keypress：当用户按下按键上的字符键触发，如果按住不放则会重复触发。</li>
+<li>keyup：当用户释放键盘上的键时触发。</li>
+</ul>
+<hr>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>客官里面请~</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Claye 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="Claye 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Web前端/" rel="tag"><i class="fa fa-tag"></i> Web前端</a>
+          
+            <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+          
+            <a href="/tags/DOM/" rel="tag"><i class="fa fa-tag"></i> DOM</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/DOM事件扩展/" rel="next" title="DOM事件扩展">
+                <i class="fa fa-chevron-left"></i> DOM事件扩展
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/服务器开放端口扫描工具/" rel="prev" title="服务器开放端口扫描工具">
+                服务器开放端口扫描工具 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/touxiang.png" alt="Claye">
+            
+              <p class="site-author-name" itemprop="name">Claye</p>
+              <div class="site-description motion-element" itemprop="description">Some life, Some technology, And some soul chicken soup.</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">文章</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Clayeee" title="GitHub &rarr; https://github.com/Clayeee" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:1269575798@qq.com" title="E-Mail &rarr; mailto:1269575798@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://example.com" title="http://example.com" rel="noopener" target="_blank">Title</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件流"><span class="nav-number">1.</span> <span class="nav-text">事件流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事件冒泡"><span class="nav-number">1.1.</span> <span class="nav-text">事件冒泡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件捕获"><span class="nav-number">1.2.</span> <span class="nav-text">事件捕获</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM事件流"><span class="nav-number">1.3.</span> <span class="nav-text">DOM事件流</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件处理程序"><span class="nav-number">2.</span> <span class="nav-text">事件处理程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML事件处理程序"><span class="nav-number">2.1.</span> <span class="nav-text">HTML事件处理程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM0级事件处理程序"><span class="nav-number">2.2.</span> <span class="nav-text">DOM0级事件处理程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM2级事件处理程序"><span class="nav-number">2.3.</span> <span class="nav-text">DOM2级事件处理程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IE事件处理程序"><span class="nav-number">2.4.</span> <span class="nav-text">IE事件处理程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件对象"><span class="nav-number">3.</span> <span class="nav-text">事件对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM中的事件对象"><span class="nav-number">3.1.</span> <span class="nav-text">DOM中的事件对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IE中的事件对象"><span class="nav-number">3.2.</span> <span class="nav-text">IE中的事件对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件类型"><span class="nav-number">4.</span> <span class="nav-text">事件类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UI事件"><span class="nav-number">4.1.</span> <span class="nav-text">UI事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#焦点事件"><span class="nav-number">4.2.</span> <span class="nav-text">焦点事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#鼠标与滚轮事件"><span class="nav-number">4.3.</span> <span class="nav-text">鼠标与滚轮事件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-客户端坐标位置"><span class="nav-number">4.3.1.</span> <span class="nav-text">1. 客户端坐标位置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-页面坐标位置"><span class="nav-number">4.3.2.</span> <span class="nav-text">2. 页面坐标位置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-屏幕坐标位置"><span class="nav-number">4.3.3.</span> <span class="nav-text">3.屏幕坐标位置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-修改键"><span class="nav-number">4.3.4.</span> <span class="nav-text">4.修改键</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#键盘与文本事件"><span class="nav-number">4.4.</span> <span class="nav-text">键盘与文本事件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Claye</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="20,20,0" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'RtPtaxYPnhL7FHdxo5c5PWcE-gzGzoHsz',
+    appKey: '94wPCcpS6dCVNnTlyyqscFyT',
+    placeholder: '😎小老弟不来评论一下嘛~😉',
+    avatar: 'retro',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

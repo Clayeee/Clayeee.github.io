@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script>
+<script>tpwidget("init", {
+    "flavor": "bubble",
+    "location": "YB1UX38K6DY1",
+    "geolocation": "enabled",
+    "position": "bottom-right",
+    "margin": "100px 10px",
+    "language": "zh-chs",
+    "unit": "c",
+    "theme": "chameleon",
+    "uid": "U0A858B368",
+    "hash": "4af6247700ae63a2decf0a02b2e2198d"
+});
+tpwidget("show");</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Javascript基础语法            JavaScript组成部分 ECMAScript (基础语法——核心)       语法 类型">
+<meta name="keywords" content="ECMAScript5,Web前端,笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript基础">
+<meta property="og:url" content="http://www.xucha0.cn/JavaScript基础/index.html">
+<meta property="og:site_name" content="东北大苞米">
+<meta property="og:description" content="Javascript基础语法            JavaScript组成部分 ECMAScript (基础语法——核心)       语法 类型">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-11T09:30:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript基础">
+<meta name="twitter:description" content="Javascript基础语法            JavaScript组成部分 ECMAScript (基础语法——核心)       语法 类型">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.xucha0.cn/JavaScript基础/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JavaScript基础 | 东北大苞米</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband">
+     <a href="https://github.com/clayeee" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    </div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">东北大苞米</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Claye's Private Blog</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.xucha0.cn/JavaScript基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Claye">
+      <meta itemprop="description" content="Some life, Some technology, And some soul chicken soup.">
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="东北大苞米">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript基础
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-11 17:30:28" itemprop="dateCreated datePublished" datetime="2018-09-11T17:30:28+08:00">2018-09-11</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/JavaScript基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/JavaScript基础/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/JavaScript基础/" class="leancloud_visitors" data-flag-title="JavaScript基础">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div class="note default">
+            <p>Javascript基础语法</p>
+          </div>
+<h2 id="JavaScript组成部分"><a href="#JavaScript组成部分" class="headerlink" title="JavaScript组成部分"></a>JavaScript组成部分</h2><ul>
+<li><p>ECMAScript (基础语法——核心)     </p>
+<ul>
+<li>语法</li>
+<li>类型<a id="more"></a></li>
+<li>语句</li>
+<li>关键字</li>
+<li>保留字</li>
+<li>操作符</li>
+<li>对象</li>
+</ul>
+</li>
+<li><p>DOM (Document Object Model 文档对象模型)</p>
+<blockquote>
+<p>提供访问和操作网页内容的方法和接口</p>
+</blockquote>
+<ul>
+<li><p>DOM1级</p>
+<blockquote>
+<p>主要是映射文档的结构</p>
+</blockquote>
+<ul>
+<li>DOM核心 (映射基于XML文档结构)</li>
+<li>DOM HTML (基于DOM核心，添加对HTML的对象和方法)</li>
+</ul>
+</li>
+<li><p>DOM2级</p>
+<blockquote>
+<p>在原来DOM的基础上又扩充了鼠标和用户界面事件、范围、遍历（迭代DOM文档的方法）等细分模块，通过对象接口增加了对CSS的支持</p>
+</blockquote>
+<ul>
+<li>DOM视图（DOM Views）：定义了跟踪不同文档视图的接口</li>
+<li>DOM事件（DOM Events）：定义了事件和事件处理的接口</li>
+<li>DOM样式（DOM Style）：定义了基于CSS为元素应用样式的接口</li>
+<li>DOM遍历和范围（DOM Traversal and Range）：定义了遍历和操作文档树的接口</li>
+</ul>
+</li>
+<li><p>DOM3级</p>
+<blockquote>
+<p>进一步扩展了DOM，引入了以统一方式加载和保存文档的方法；新增了验证文档的方法</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>BOM (Browser Object Model 浏览器对象模型)</p>
+<blockquote>
+<p>提供与浏览器交互的方法和接口</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>简单数据类型：Undefined、Null、Boolean、Number、String</p>
+<p>复杂数据类型：Object</p>
+<ul>
+<li><p>Array</p>
+</li>
+<li><p>Function</p>
+</li>
+<li><p>Date</p>
+</li>
+<li><p>RegExp</p>
+</li>
+<li><p>………..</p>
+<h5 id="typeof操作符"><a href="#typeof操作符" class="headerlink" title="typeof操作符 "></a>typeof操作符 <!--返回变量数据类型--></h5><h3 id="Undefined"><a href="#Undefined" class="headerlink" title="Undefined"></a>Undefined</h3><blockquote>
+<p>表示初始化但未声明的变量，一般不显式赋值，多用于比较</p>
+</blockquote>
+<h3 id="NULL"><a href="#NULL" class="headerlink" title="NULL"></a>NULL</h3><blockquote>
+<p>表示一个空指针<strong>对象</strong> ，多以typeof会显示”object”,实际上Undefined是派生自NULL，所以 <code>null == undefined</code> 的返回值是<code>true</code></p>
+</blockquote>
+<h3 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h3><blockquote>
+<p><code>true</code>和<code>false</code>区分大小写，<code>True</code>和<code>False</code>不是<code>Boolean</code>值，只是标识符    </p>
+</blockquote>
+<h4 id="转化Boolean值-：boolean-函数"><a href="#转化Boolean值-：boolean-函数" class="headerlink" title="转化Boolean值 ：boolean();函数"></a>转化Boolean值 ：<code>boolean();</code>函数</h4></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>数据类型</strong></th>
+<th style="text-align:center">转换为true的值</th>
+<th style="text-align:center">转换为false的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Boolean</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">String</td>
+<td style="text-align:center">任何非空字符串</td>
+<td style="text-align:center">“ ”（空字符串）</td>
+</tr>
+<tr>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">任何非零数字值（包括无穷大）</td>
+<td style="text-align:center">0和NaN</td>
+</tr>
+<tr>
+<td style="text-align:center">Object</td>
+<td style="text-align:center">任何对象</td>
+<td style="text-align:center">null</td>
+</tr>
+<tr>
+<td style="text-align:center">Undefined</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">undefined</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h3><blockquote>
+<p>使用IEEE754格式来表示整数和浮点</p>
+</blockquote>
+<ul>
+<li><p>整型</p>
+<ul>
+<li>十进制    <code>var num = 10;</code></li>
+<li>八进制    <code>var num = 070;</code></li>
+<li>十六进制    <code>var num = 0x5f；</code></li>
+</ul>
+<blockquote>
+<p>在进行算术计算时，所有的八进制和十六进制都被转化为十进制</p>
+</blockquote>
+</li>
+<li><p>浮点型</p>
+<blockquote>
+<p>浮点数最高精度为17位</p>
+</blockquote>
+<p><code>0.1 + 0.2 = 0.30000000000000004</code> (js浮点运算会产生误差)</p>
+</li>
+<li><p>数值范围</p>
+<p>最大值： <code>Number.MIN_VALUE</code></p>
+<p>最小值： <code>Number.MAX_VALUE</code></p>
+<blockquote>
+<p>超出数值范围的数会被自动转换成为特殊的<code>Infinity</code>值，<code>Infinity</code>表示正无穷，<code>-Infinity</code>表示负无穷，<code>Infinity</code>值无法参加运算，可以用<code>isFinite();</code>函数判断数值是否是有穷的。</p>
+</blockquote>
+</li>
+<li><p>NaN (Not a Number)</p>
+<blockquote>
+<p>表示一个本来要返回数值的操作数未返回数值的情况。</p>
+</blockquote>
+<ul>
+<li><p>特点</p>
+<ol>
+<li><p>任何涉及NaN的操作都会返回NaN，除以0的操作也返回NaN</p>
+<blockquote>
+<p>实际上只有NaN / NaN才返回NaN，整数除以NaN返回Infinity，负数除以NaN返回-Infinity</p>
+</blockquote>
+</li>
+<li><p>NaN与任何值都不相等，包括他本身</p>
+</li>
+</ol>
+</li>
+<li><p>判定：<code>isNaN();</code>函数</p>
+<ul>
+<li><code>isNaN( NaN ) == true</code></li>
+<li><code>isNaN( 10 ) == false</code></li>
+<li><code>isNaN( &quot;10&quot; ) == false</code> (可以被转换成数值10)</li>
+<li><code>isNaN( &quot;blue&quot; ) == true</code></li>
+<li><code>isNaN( true )  == false</code> (可以被转换成数值1)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>数值转换</p>
+<ol>
+<li><p>Number();</p>
+<ul>
+<li>如果是布尔值，true和false将分别转为1和0.</li>
+<li>如果是数字值，只是简单地传入和返回。</li>
+<li>如果是NULL值，返回0.</li>
+<li>如果是undefined，返回NaN</li>
+<li>如果是字符串：<ol>
+<li>如果字符串只包含数字，则将其转化为十进制数值</li>
+<li>如果字符串中包含有效的浮点格式，则将其转化为对应的浮点数值</li>
+<li>如果字符串中包含有效的十六进制格式，则转化为相同大小的十进制形式</li>
+<li>如果字符是空的，则将其转化为0</li>
+<li>如果字符串包含上述格式之外的字符，则将其转化为NaN</li>
+</ol>
+</li>
+<li>如果是对象，则调用valueOf()方法，然后依照前面的规则返回值。如果转换得是NaN，则调用toString();方法。</li>
+</ul>
+</li>
+<li><p>parseInt();</p>
+<blockquote>
+<p>忽略字符串前面的空格，直到找到第一个非空字符，如果第一个字符不是数字字符或者符号，则返回NaN。否则会直接解析完最后一个数字字符</p>
+</blockquote>
+</li>
+<li><p>parsefloat();</p>
+<blockquote>
+<p>与parseInt();类似</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3></li>
+<li><p>特点</p>
+<blockquote>
+<p>ECMAScript中的字符串是不可变的，要改变，只能先销毁再赋值，也就是覆盖。</p>
+</blockquote>
+</li>
+<li><p>转换字符串</p>
+<ol>
+<li><p><code>toString();</code>方法</p>
+<blockquote>
+<p><code>null</code>和<code>undefined</code>没有这个方法</p>
+</blockquote>
+<p>参数：null，2，8，10，16     <code>改变进制</code></p>
+</li>
+<li><p><code>String();</code>方法</p>
+</li>
+</ol>
+<h3 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h3><blockquote>
+<p>ECMAScript中的对象其实就是一组数据和功能的集合。</p>
+</blockquote>
+</li>
+<li><p>创建对象</p>
+<ol>
+<li><code>var obj = new Object();</code></li>
+<li><code>var obj = { ... };</code></li>
+</ol>
+</li>
+<li><p>Object属性和方法</p>
+<ul>
+<li><code>constructor</code>：保存着用于创建当前对象的函数</li>
+<li><code>hasOwnProperty( propertyName )</code>：用于检查给定的属性在当前的对象实例中是否存在</li>
+<li><code>isPropertypeOf( object )</code>：用于检查传入的对象是否是传入对象的原型</li>
+<li><code>propertyIsEnumerable( propertyName )</code>：用于检查给定的属性是否能够使用for-in语句来枚举</li>
+<li><code>toLocaleString()</code>：返回对象的字符串表示，该字符串与执行环境的地区对应</li>
+<li><code>toString()</code>：返回对象的字符串表示</li>
+<li><code>valueOf()</code>：返回对象的字符串数值或布尔值表示，通常与<code>toString()</code>方法返回的值相同</li>
+</ul>
+<h3 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h3></li>
+<li><p>for-in语句</p>
+<ul>
+<li><p>迭代语句，循环显示BOM中对象的所有属性（无序的）</p>
+<blockquote>
+<p>如果对象中属性值为null或者undefined，则会终止循环</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>with语句</p>
+<ul>
+<li>将代码的作用域设置到一个特定的对象中（严格模式不支持）</li>
+</ul>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>​    参数：函数可以传入多个参数，而且不需要定义形参接受，他们会被存入伪数组arguments中。</p>
+<p>​    重载：js函数没有重载，只能覆盖。</p>
+</li>
+</ul>
+<hr>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>客官里面请~</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Claye 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="Claye 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ECMAScript5/" rel="tag"><i class="fa fa-tag"></i> ECMAScript5</a>
+          
+            <a href="/tags/Web前端/" rel="tag"><i class="fa fa-tag"></i> Web前端</a>
+          
+            <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/JS面向对象程序设计/" rel="prev" title="JS面向对象程序设计">
+                JS面向对象程序设计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/touxiang.png" alt="Claye">
+            
+              <p class="site-author-name" itemprop="name">Claye</p>
+              <div class="site-description motion-element" itemprop="description">Some life, Some technology, And some soul chicken soup.</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">文章</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Clayeee" title="GitHub &rarr; https://github.com/Clayeee" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:1269575798@qq.com" title="E-Mail &rarr; mailto:1269575798@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://example.com" title="http://example.com" rel="noopener" target="_blank">Title</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript组成部分"><span class="nav-number">1.</span> <span class="nav-text">JavaScript组成部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">2.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#typeof操作符"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">typeof操作符 </span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#Undefined"><span class="nav-number">2.1.</span> <span class="nav-text">Undefined</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NULL"><span class="nav-number">2.2.</span> <span class="nav-text">NULL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boolean"><span class="nav-number">2.3.</span> <span class="nav-text">Boolean</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#转化Boolean值-：boolean-函数"><span class="nav-number">2.3.1.</span> <span class="nav-text">转化Boolean值 ：boolean();函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Number"><span class="nav-number">2.4.</span> <span class="nav-text">Number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String"><span class="nav-number">2.5.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object"><span class="nav-number">2.6.</span> <span class="nav-text">Object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语句"><span class="nav-number">2.7.</span> <span class="nav-text">语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">2.8.</span> <span class="nav-text">函数</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Claye</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="20,20,0" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'RtPtaxYPnhL7FHdxo5c5PWcE-gzGzoHsz',
+    appKey: '94wPCcpS6dCVNnTlyyqscFyT',
+    placeholder: '😎小老弟不来评论一下嘛~😉',
+    avatar: 'retro',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
